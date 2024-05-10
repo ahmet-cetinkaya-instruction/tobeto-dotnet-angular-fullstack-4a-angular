@@ -60,6 +60,29 @@
   }
 }
 
+<hr />
+*ngSwitch
+<ng-container [ngSwitch]="cartCount">
+  <p *ngSwitchCase="0">Sepette ürün bulunmuyor.</p>
+  <p *ngSwitchCase="1">Sepette sadece 1 ürün bulunuyor.</p>
+  <p *ngSwitchDefault>Sepette {{ cartCount }} ürün bulunuyor.</p>
+</ng-container>
+
+<hr />
+
+{{ "@switch:" }}
+@switch (cartCount) {
+  @case (0) {
+    <p>Sepette ürün bulunmuyor.</p>
+  }
+  @case (1) {
+    <p>Sepette sadece 1 ürün bulunuyor.</p>
+  }
+  @default {
+    <p>Sepette {{ cartCount }} ürün bulunuyor.</p>
+  }
+}
+
 <button (click)="onAddProductToCart()">Ürün ekle</button>
 
 <app-footer></app-footer>
