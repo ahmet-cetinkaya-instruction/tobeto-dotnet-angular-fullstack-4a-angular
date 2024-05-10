@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ProductListItem } from '../../models/product-list-item';
+import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-product-card-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardComponent],
   templateUrl: './product-card-list.component.html',
   styleUrl: './product-card-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,5 +1,12 @@
-<ul>
+<div class="row">
   @for (product of productList; track $index) {
-  <li>{{ product.name }} - {{ product.price }}</li>
+  <app-card
+    [title]="product.name"
+    [buttonLabel]="'Add to card - ' + product.price"
+    [description]="product.description"
+    [imageSrc]="product.imageUrl"
+    [imageAlt]="product.name"
+    class="col-12 col-md-6 col-lg-4 my-2"
+  ></app-card>
   }
-</ul>
+</div>
