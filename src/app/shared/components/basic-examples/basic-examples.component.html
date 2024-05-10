@@ -1,0 +1,88 @@
+<!-- <app-navbar></app-navbar> -->
+
+<h1>{{ title }}</h1>
+
+<!-- < Angular 17 -->
+<!-- * ile başlayan directive'ler Structual Directive. Elementin renderlanma süreci ele alırlar. -->
+*ngIf:
+<p *ngIf="cartCount > 1; else cartCountOne">
+  Sepette {{ cartCount }} ürün bulunuyor.
+</p>
+<ng-template #cartCountOne>
+  <p *ngIf="cartCount === 1; else noProductInCart">
+    Sepette sadece 1 ürün bulunuyor.
+  </p>
+
+  <ng-template #noProductInCart>
+    <p>Sepette ürün bulunmuyor.</p>
+  </ng-template>
+</ng-template>
+
+<hr />
+
+{{ "@if:" }}
+<!-- > Angular 17 -->
+@if (cartCount > 1) {
+<p>Sepette {{ cartCount }} ürün bulunuyor.</p>
+} @else if (cartCount === 1) {
+<p>Sepette sadece 1 ürün bulunuyor.</p>
+} @else {
+<p>Sepette ürün bulunmuyor.</p>
+}
+
+<hr />
+
+<!-- < Angular 17 -->
+*ngFor:
+<ul>
+  <ng-container *ngFor="let product of products">
+    <li *ngIf="!product.discontinued">
+      {{ product.name }} - {{ product.price }}
+    </li>
+  </ng-container>
+</ul>
+
+<hr />
+
+<!-- > Angular 17 -->
+{{ "@for:" }}
+@for (product of products; track $index) {
+  <li *ngIf="!product.discontinued">
+    {{ product.name }} - {{ product.price }}
+  </li>
+}
+---
+@for (product of products; track $index) {
+  @if (!product.discontinued) {
+    <li>
+        {{ product.name }} - {{ product.price }}
+    </li>
+  }
+}
+
+<hr />
+*ngSwitch
+<ng-container [ngSwitch]="cartCount">
+  <p *ngSwitchCase="0">Sepette ürün bulunmuyor.</p>
+  <p *ngSwitchCase="1">Sepette sadece 1 ürün bulunuyor.</p>
+  <p *ngSwitchDefault>Sepette {{ cartCount }} ürün bulunuyor.</p>
+</ng-container>
+
+<hr />
+
+{{ "@switch:" }}
+@switch (cartCount) {
+  @case (0) {
+    <p>Sepette ürün bulunmuyor.</p>
+  }
+  @case (1) {
+    <p>Sepette sadece 1 ürün bulunuyor.</p>
+  }
+  @default {
+    <p>Sepette {{ cartCount }} ürün bulunuyor.</p>
+  }
+}
+
+<button (click)="onAddProductToCart()">Ürün ekle</button>
+
+<!-- <app-footer></app-footer> -->
