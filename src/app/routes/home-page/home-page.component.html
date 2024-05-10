@@ -9,12 +9,13 @@
   <div class="row">
     <aside class="col-3">
       <h1 style="font-size: 1.5rem">Categories</h1>
-      <app-category-list-group></app-category-list-group>
+      <app-category-list-group (changeSelect)="onChangeCategorySelect($event)"></app-category-list-group>
+      <!-- $event: Output'un verdigi degeri referans eder. -->
     </aside>
 
     <section class="col">
       <h1 style="font-size: 1.5rem">Products</h1>
-      <app-product-card-list></app-product-card-list>
+      <app-product-card-list [filterByCategoryId]="selectedCategoryId"></app-product-card-list>
     </section>
   </div>
 </app-basic-layout>

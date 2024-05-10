@@ -13,10 +13,16 @@ import { ProductCardListComponent } from '../../features/products/components/pro
     RouterModule,
     BasicLayoutComponent,
     CategoryListGroupComponent,
-    ProductCardListComponent
+    ProductCardListComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePageComponent { }
+export class HomePageComponent {
+  selectedCategoryId: number | null = null;
+
+  onChangeCategorySelect(event: number | null) {
+    this.selectedCategoryId = event;
+  }
+}

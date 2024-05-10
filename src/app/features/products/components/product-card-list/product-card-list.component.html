@@ -1,5 +1,5 @@
 <div class="row">
-  @for (product of productList; track $index) {
+  @for (product of filteredProductList; track $index) {
   <app-card
     [title]="product.name"
     [buttonLabel]="'Add to card - ' + product.price"
