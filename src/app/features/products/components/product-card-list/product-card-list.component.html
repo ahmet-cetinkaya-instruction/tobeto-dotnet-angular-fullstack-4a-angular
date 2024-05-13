@@ -2,7 +2,8 @@
   @for (product of filteredProductList; track $index) {
   <app-card
     [title]="product.name"
-    [buttonLabel]="'Add to card - ' + product.price"
+    [buttonLabel]="'View - ' + (product.price | currency)"
+    (buttonClick)="onViewProduct(product)"
     [description]="product.description"
     [imageSrc]="product.imageUrl"
     [imageAlt]="product.name"

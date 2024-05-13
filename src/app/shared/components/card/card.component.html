@@ -10,6 +10,13 @@
     <p class="card-text">
       {{ description }}
     </p>
-    <button type="button" class="btn btn-primary">{{ buttonLabel }}</button>
+    <button
+      type="button"
+      [routerLink]="buttonRouterLink"
+      class="btn btn-primary"
+      (click)="onButtonClick()"
+    >
+      {{ buttonLabel }}
+    </button>
   </div>
 </div>
