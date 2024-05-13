@@ -2,10 +2,10 @@
   @for (product of filteredProductList; track $index) {
   <app-card
     [title]="product.name"
-    [buttonLabel]="'View - ' + (product.price | currency)"
+    [buttonLabel]="'View - ' + (product.unitPrice | currency)"
     (buttonClick)="onViewProduct(product)"
-    [description]="product.description"
-    [imageSrc]="product.imageUrl"
+    [description]="product.quantityPerUnit"
+    imageSrc="https://via.placeholder.com/200"
     [imageAlt]="product.name"
     class="col-12 col-md-6 col-lg-4 my-2"
   ></app-card>
