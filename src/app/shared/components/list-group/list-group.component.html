@@ -1,7 +1,7 @@
 <ul class="list-group">
   @for (item of items; track $index) {
   <li
-    class="list-group-item"
+    class="list-group-item n-list-group-item"
     [ngClass]="{
       active: isSelectedItem(item.id)
     }"

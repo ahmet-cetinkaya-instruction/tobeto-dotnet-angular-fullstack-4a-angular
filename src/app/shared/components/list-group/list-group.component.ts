@@ -29,7 +29,7 @@ export class ListGroupComponent {
   // EventEmitter: Component'ten dışarıya event göndermek için kullanılır.
   // <app-list-group (changeSelect)="onSelect($event)"></app-list-group>
 
-  selectedItemId: string | null = null;
+  @Input() selectedItemId: string | null = null;
 
   onClickItem(event: ListGroupItem) {
     this.selectedItemId = this.selectedItemId !== event.id ? event.id : null;
