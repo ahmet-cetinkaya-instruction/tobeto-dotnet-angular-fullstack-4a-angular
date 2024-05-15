@@ -10,6 +10,7 @@ import {
 import { ProductListItem } from '../../models/product-list-item';
 import { CardComponent } from '../../../../shared/components/card/card.component';
 import { ProductsService } from '../../services/products.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-product-card-list',
@@ -32,10 +33,12 @@ export class ProductCardListComponent implements OnInit {
   }
 
   getProductList() {
-    const request = this.productsService.getList().subscribe((productList) => {
-      this.productList = productList;
-      request.unsubscribe();
-    });
+    this.productsService
+      .getList()
+      .pipe(take(1))
+      .subscribe((productList) => {
+        this.productList = productList;
+      });
   }
 
   onViewProduct(product: ProductListItem) {
