@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { CategoryListItem } from '../../models/category-list-item';
@@ -12,6 +14,7 @@ import {
   ListGroupItem,
   ListGroupItems,
 } from '../../../../shared/components/list-group/list-group.component';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-category-list-group',
@@ -21,19 +24,24 @@ import {
   styleUrl: './category-list-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryListGroupComponent {
+export class CategoryListGroupComponent implements OnInit {
   @Input() initialSelectedCategoryId?: number | null;
   @Output() changeSelect = new EventEmitter<number | null>();
 
-  categoryList: CategoryListItem[] = [
-    { id: 1, name: 'Beverages' },
-    { id: 2, name: 'Canned Goods' },
-    { id: 3, name: 'Dairy' },
-    { id: 4, name: 'Frozen Foods' },
-    { id: 5, name: 'Meat' },
-    { id: 6, name: 'Produce' },
-    { id: 7, name: 'Snacks' },
-  ]; // Mock data
+  categoryList: CategoryListItem[] = [];
+
+  constructor(private categoriesService: CategoriesService, private change: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.getList();
+  }
+
+  getList() {
+    this.categoriesService.getList().subscribe((categories) => {
+      this.categoryList = categories;
+      this.change.markForCheck();
+    });
+  }
 
   onChangeSelect(selectedItemId: string | null) {
     this.changeSelect.emit(selectedItemId ? Number(selectedItemId) : null);

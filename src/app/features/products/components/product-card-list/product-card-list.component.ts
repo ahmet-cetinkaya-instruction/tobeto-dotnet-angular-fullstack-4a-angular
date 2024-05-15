@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -26,7 +27,10 @@ export class ProductCardListComponent implements OnInit {
 
   productList!: ProductListItem[];
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private change: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getProductList();
@@ -38,6 +42,7 @@ export class ProductCardListComponent implements OnInit {
       .pipe(take(1))
       .subscribe((productList) => {
         this.productList = productList;
+        this.change.markForCheck();
       });
   }
 
