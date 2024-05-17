@@ -10,11 +10,13 @@ import { ProductsService } from '../../services/products.service';
 import { ProductDetail } from '../../models/product-detail';
 import { PlaceholderComponent } from '../../../../shared/components/placeholder/placeholder.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { HighlightDirective } from '../../../../shared/directives/highlight.directive';
+import { VatPipe } from '../../pipes/vat.pipe';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, PlaceholderComponent, ButtonComponent],
+  imports: [CommonModule, PlaceholderComponent, ButtonComponent, VatPipe, HighlightDirective],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

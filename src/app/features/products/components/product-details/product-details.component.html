@@ -14,7 +14,7 @@
 
     <p><strong>Units In Stock:</strong> {{ product.unitsInStock }}</p>
 
-    <p class="display-6">{{ product.unitPrice | currency }}</p>
+    <p appHighlight="yellow" labelText="On Sale!" class="display-6">{{ product.unitPrice | appVat | currency }}</p>
     <button class="btn btn-primary" (click)="onAddToCard()">Add to Cart</button>
   </div>
 </div>
