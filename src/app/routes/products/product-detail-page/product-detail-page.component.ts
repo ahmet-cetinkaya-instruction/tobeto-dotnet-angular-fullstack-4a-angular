@@ -1,13 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BasicLayoutComponent } from '../../../shared/components/basic-layout/basic-layout.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDetailsComponent } from '../../../features/products/components/product-details/product-details.component';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-product-detail-page',
   standalone: true,
-  imports: [CommonModule, BasicLayoutComponent, ProductDetailsComponent],
+  imports: [
+    // CommonModule, // SharedModule içerisinde olduğu için burada tekrar import etmeye gerek yok.
+    // BasicLayoutComponent,
+    ProductDetailsComponent,
+    SharedModule
+  ],
   templateUrl: './product-detail-page.component.html',
   styleUrl: './product-detail-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
