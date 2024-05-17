@@ -1,22 +1,31 @@
 <app-basic-layout>
   <div
+    *appIfNot="oldUser; else welcomeBack"
     class="d-flex flex-column justify-content-center align-items-center my-3"
   >
     <h1>Welcome!</h1>
     <small>Out products are fresh!</small>
   </div>
+  <ng-template #welcomeBack>
+    <h1>Welcome back!</h1>
+    <small>Out products are still fresh!</small>
+  </ng-template>
 
   <div class="row">
     <aside class="col-3">
       <h1 style="font-size: 1.5rem">Categories</h1>
-      <app-category-list-group [initialSelectedCategoryId]="selectedCategoryId" (changeSelect)="onChangeCategorySelect($event)"></app-category-list-group>
+      <app-category-list-group
+        [initialSelectedCategoryId]="selectedCategoryId"
+        (changeSelect)="onChangeCategorySelect($event)"
+      ></app-category-list-group>
       <!-- $event: Output'un verdigi degeri referans eder. -->
     </aside>
 
     <section class="col">
       <h1 style="font-size: 1.5rem">Products</h1>
-      <app-product-card-list [filterByCategoryId]="selectedCategoryId"
-      (viewProduct)="onViewProduct($event)"
+      <app-product-card-list
+        [filterByCategoryId]="selectedCategoryId"
+        (viewProduct)="onViewProduct($event)"
       ></app-product-card-list>
     </section>
   </div>

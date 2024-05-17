@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CategoryListGroupComponent } from '../../features/categories/components/category-list-group/category-list-group.component';
 import { ProductCardListComponent } from '../../features/products/components/product-card-list/product-card-list.component';
 import { ProductListItem } from '../../features/products/models/product-list-item';
 import { SharedModule } from '../../shared/shared.module';
+import { IfNotDirective } from '../../shared/directives/if-not.directive';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +15,8 @@ import { SharedModule } from '../../shared/shared.module';
     // BasicLayoutComponent,
     SharedModule,
     CategoryListGroupComponent,
-    ProductCardListComponent
+    ProductCardListComponent,
+    IfNotDirective,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -23,10 +25,24 @@ import { SharedModule } from '../../shared/shared.module';
 export class HomePageComponent implements OnInit {
   selectedCategoryId: number | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  oldUser: boolean = false;
+
+  constructor(private router: Router, private route: ActivatedRoute, private change:ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getProductFiltersFromRoute();
+    this.detectOldUser();
+  }
+  detectOldUser() {
+    const isOldUser = Boolean(localStorage.getItem('isOldUser'));
+    if (!isOldUser) {
+      localStorage.setItem('isOldUser', 'true');
+      return;
+    }
+    setTimeout(() => {
+      this.oldUser = isOldUser;
+      this.change.markForCheck();
+    }, 5000);
   }
 
   getProductFiltersFromRoute() {
