@@ -16,15 +16,18 @@ export class ProductsService {
 
   getList(
     page: number,
-    pageSize: number = 10
+    pageSize: number = 10,
+    filters?: { categoryId?: number }
   ): Observable<PaginatedList<ProductListItem>> {
+    const queryParams: any = {};
+    if (filters?.categoryId) queryParams.categoryId = filters.categoryId;
+
     // TODO: Implement pagination via query parameters
     return this.http
       .get<ProductListItem[]>(this.apiControllerUrl, {
-        // params: {
+        params: queryParams,
         //   _page: page.toString(),
         //   _limit: pageSize.toString(),
-        // },
       })
       .pipe(
         map((response) => {

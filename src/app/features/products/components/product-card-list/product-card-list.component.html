@@ -1,3 +1,4 @@
+@if(productList){
 <div class="row">
   @for (product of productList.items; track $index) {
   <app-card
@@ -18,3 +19,4 @@
     (pageChange)="onPageChange($event)"
   ></app-pagination>
 </div>
+}
