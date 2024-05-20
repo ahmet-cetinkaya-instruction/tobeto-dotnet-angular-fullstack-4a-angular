@@ -26,6 +26,14 @@ export class PaginationComponent {
     this.pageChange.emit(this.page);
   }
 
+  get pageNumbers(): number[] {
+    const pageCount = Math.ceil(this.totalItemCount / this.pageSize);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= pageCount; i++) pageNumbers.push(i);
+
+    return pageNumbers;
+  }
   get hasPrevPage(): boolean {
     return this.page > 1;
   }

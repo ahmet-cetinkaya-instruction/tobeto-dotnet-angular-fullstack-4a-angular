@@ -18,9 +18,23 @@
     </li>
 
     <!-- Current Page -->
-    <li class="page-item">
-      <span class="page-link">{{ page }}</span>
+    @for (pageNumber of pageNumbers; track $index) {
+    <li
+      class="page-item"
+      [ngClass]="{
+        active: pageNumber === page
+      }"
+    >
+      <button
+        type="button"
+        class="page-link"
+        (click)="onPageChange(pageNumber)"
+        [disabled]="pageNumber === page"
+      >
+        {{ pageNumber }}
+      </button>
     </li>
+    }
 
     <!-- Next Button -->
     <li
