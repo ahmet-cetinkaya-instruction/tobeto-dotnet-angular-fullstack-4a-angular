@@ -13,9 +13,14 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
-  getList(): Observable<ProductListItem[]> {
+  getList(page: number, pageSize: number = 10): Observable<ProductListItem[]> {
     return this.http
-      .get<ProductListItem[]>(this.apiControllerUrl)
+      .get<ProductListItem[]>(this.apiControllerUrl, {
+        params: {
+          _page: page.toString(),
+          _limit: pageSize.toString(),
+        },
+      })
       .pipe(this.setImageToPlaceHolder()) as Observable<ProductListItem[]>;
   }
 

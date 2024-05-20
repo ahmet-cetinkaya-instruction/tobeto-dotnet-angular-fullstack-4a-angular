@@ -10,4 +10,11 @@
     class="col-12 col-md-6 col-lg-4 my-2"
   ></app-card>
   }
+
+  <app-pagination
+    [page]="page"
+    [pageSize]="pageSize"
+    [totalItemCount]="20"
+    (pageChange)="onPageChange($event)"
+  ></app-pagination>
 </div>
