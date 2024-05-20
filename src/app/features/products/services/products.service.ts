@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ProductListItem } from '../models/product-list-item';
 import { ProductDetail } from '../models/product-detail';
 import { environment } from '../../../../environments/environment';
@@ -14,10 +14,25 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<ProductListItem[]> {
-    return this.http.get<ProductListItem[]>(this.apiControllerUrl);
+    return this.http
+      .get<ProductListItem[]>(this.apiControllerUrl)
+      .pipe(this.setImageToPlaceHolder()) as Observable<ProductListItem[]>;
   }
 
   getById(id: number): Observable<ProductDetail> {
-    return this.http.get<ProductDetail>(`${this.apiControllerUrl}/${id}`);
+    return this.http
+      .get<ProductDetail>(`${this.apiControllerUrl}/${id}`)
+      .pipe(this.setImageToPlaceHolder()) as Observable<ProductDetail>;
+  }
+
+  private setImageToPlaceHolder() {
+    return map((response: ProductDetail | ProductListItem[]) => {
+      if (response instanceof Array)
+        for (const productListItem of response)
+          productListItem.imageUrl = 'https://via.placeholder.com/500';
+      else response.imageUrl = 'https://via.placeholder.com/500';
+
+      return response;
+    });
   }
 }

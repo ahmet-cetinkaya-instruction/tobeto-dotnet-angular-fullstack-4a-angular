@@ -5,7 +5,7 @@
     [buttonLabel]="'View - ' + (product.unitPrice | appVat : 19 | currency)"
     (buttonClick)="onViewProduct(product)"
     [description]="product.quantityPerUnit"
-    imageSrc="https://via.placeholder.com/200"
+    [imageSrc]="product.imageUrl"
     [imageAlt]="product.name"
     class="col-12 col-md-6 col-lg-4 my-2"
   ></app-card>
