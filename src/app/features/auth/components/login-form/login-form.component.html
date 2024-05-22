@@ -1,0 +1,27 @@
+<form [formGroup]="loginFormGroup" (submit)="onFormSubmit()">
+  <div>
+    <label class="d-block" for="userName">User Name:</label>
+    <input
+      type="text"
+      id="userName"
+      formControlName="userName"
+      name="userName"
+      required
+    />
+  </div>
+
+  <div>
+    <label class="d-block" for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      name="password"
+      required
+    />
+  </div>
+
+  <div class="mt-3">
+    <app-button type="submit">Login</app-button>
+  </div>
+</form>
