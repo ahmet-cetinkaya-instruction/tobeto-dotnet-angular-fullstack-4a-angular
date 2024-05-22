@@ -4,14 +4,17 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LoggedInformation } from '../models/logged-information';
 import { Observable, tap } from 'rxjs';
+import { AuthService as CoreAuthService } from '../../../core/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService extends CoreAuthService {
   private readonly apiControllerUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   login(loginCredentials: LoginCredentials): Observable<LoggedInformation> {
     return this.http
