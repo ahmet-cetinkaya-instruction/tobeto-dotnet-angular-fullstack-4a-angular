@@ -53,26 +53,27 @@ export class ProductCardListComponent implements OnInit, OnChanges, OnDestroy {
       changes['filterByCategoryId'].currentValue !==
         changes['filterByCategoryId'].previousValue
     )
-      this.getProductList();
+      this.getProductList(1, true);
   }
 
   ngOnDestroy(): void {
     this.document.removeEventListener('scroll', () => {});
   }
 
-  getProductList(page: number = 1) {
+  getProductList(page: number = 1, startBegin: boolean = false) {
     this.productsService
       .getList(page, this.pageSize, {
         categoryId: this.filterByCategoryId || undefined,
       })
       .pipe(take(1))
       .subscribe((productList) => {
-        if (!this.productList) this.productList = productList;
+        if (!this.productList || startBegin) this.productList = productList;
         else {
           this.productList!.items.push(...productList.items);
           this.productList!.pageIndex = productList.pageIndex;
           this.productList!.totalItems = productList.totalItems;
         }
+
         this.change.markForCheck();
       });
   }
