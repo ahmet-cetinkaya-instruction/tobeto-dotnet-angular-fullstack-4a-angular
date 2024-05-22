@@ -7,6 +7,6 @@
 </ul> -->
 <app-list-group
   [items]="categoryListGroupItems"
-  [selectedItemId]="initialSelectedCategoryId?.toString() ?? null"
+  [selectedItemId]="selectedCategoryId?.toString() ?? null"
   (changeSelect)="onChangeSelect($event)"
 ></app-list-group>

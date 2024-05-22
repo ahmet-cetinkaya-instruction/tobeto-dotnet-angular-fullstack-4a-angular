@@ -25,7 +25,7 @@ import { CategoriesService } from '../../services/categories.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryListGroupComponent implements OnInit {
-  @Input() initialSelectedCategoryId?: number | null;
+  @Input() selectedCategoryId?: number | null;
   @Output() changeSelect = new EventEmitter<number | null>();
 
   categoryList: CategoryListItem[] = [];

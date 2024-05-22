@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CategoryListGroupComponent } from '../../features/categories/components/category-list-group/category-list-group.component';
 import { ProductCardListComponent } from '../../features/products/components/product-card-list/product-card-list.component';
@@ -27,7 +32,11 @@ export class HomePageComponent implements OnInit {
 
   oldUser: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private change:ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private change: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getProductFiltersFromRoute();
@@ -48,12 +57,12 @@ export class HomePageComponent implements OnInit {
   }
 
   getProductFiltersFromRoute() {
-    this.route.queryParams
-      .subscribe((queryParams) => {
-        const categoryId = queryParams['categoryId'];
-        if (categoryId) this.selectedCategoryId = Number(categoryId);
-      })
-      .unsubscribe();
+    this.route.queryParams.subscribe((queryParams) => {
+      const categoryId = queryParams['categoryId'];
+      if (categoryId) this.selectedCategoryId = Number(categoryId);
+      else this.selectedCategoryId = null;
+      this.change.markForCheck();
+    });
   }
 
   onChangeCategorySelect(event: number | null) {
