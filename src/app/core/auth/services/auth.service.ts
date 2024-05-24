@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AccessTokenPayload } from '../models/access-token-payload';
+import { LocalStorageService } from '../../browser/services/local-storage.service';
+import { ACCESS_TOKEN_KEY } from '../constants/auth-keys';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor(protected localStorageService: LocalStorageService) {}
 
   protected get token(): string | null {
-    return localStorage.getItem('access_token');
+    return this.localStorageService.get<string>(ACCESS_TOKEN_KEY);
   }
 
   protected get tokenPayload(): AccessTokenPayload | null {
@@ -25,7 +27,7 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('access_token');
+    this.localStorageService.remove(ACCESS_TOKEN_KEY);
   }
 
   get isAuthenticated(): boolean {

@@ -10,6 +10,7 @@ import { ProductCardListComponent } from '../../features/products/components/pro
 import { ProductListItem } from '../../features/products/models/product-list-item';
 import { SharedModule } from '../../shared/shared.module';
 import { IfNotDirective } from '../../shared/directives/if-not.directive';
+import { LocalStorageService } from '../../core/browser/services/local-storage.service';
 
 @Component({
   selector: 'app-home-page',
@@ -35,7 +36,8 @@ export class HomePageComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private change: ChangeDetectorRef
+    private change: ChangeDetectorRef,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -43,11 +45,9 @@ export class HomePageComponent implements OnInit {
     this.detectOldUser();
   }
   detectOldUser() {
-    if (!localStorage) return;
-
-    const isOldUser = Boolean(localStorage.getItem('isOldUser'));
+    const isOldUser = this.localStorageService.get<boolean>('isOldUser');
     if (!isOldUser) {
-      localStorage.setItem('isOldUser', 'true');
+      this.localStorageService.set('isOldUser', 'true');
       return;
     }
     setTimeout(() => {
