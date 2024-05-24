@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDetailsComponent } from '../../../features/products/components/product-details/product-details.component';
-import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -10,7 +9,6 @@ import { SharedModule } from '../../../shared/shared.module';
     // CommonModule, // SharedModule içerisinde olduğu için burada tekrar import etmeye gerek yok.
     // BasicLayoutComponent,
     ProductDetailsComponent,
-    SharedModule
   ],
   templateUrl: './product-detail-page.component.html',
   styleUrl: './product-detail-page.component.scss',
