@@ -2,11 +2,23 @@ import { Injectable } from '@angular/core';
 import { AccessTokenPayload } from '../models/access-token-payload';
 import { LocalStorageService } from '../../browser/services/local-storage.service';
 import { ACCESS_TOKEN_KEY } from '../constants/auth-keys';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  // Subject'ler Observable'in alt sınıfıdır. Kendi çağrılarımızı -next, error, complete- yapabiliriz. Bu observable yapıya subscribe olan dinleyiciler, subscribe olduktan sonraki çağrıları alabilirler. // @Output'a benzer.
+  protected _logged = new Subject<void>();
+  public logged: Observable<void> = this._logged.asObservable();
+
+  protected _loggedOut = new Subject<void>();
+  public loggedOut: Observable<void> = this._loggedOut.asObservable();
+
+  // BehaviorSubject, bir değer tutar ve bu değeri subscribe olanlara anında mevcut değeri verir. Yeni bir değer yayınlandığında, bu değeri değiştirir ve subscribe olan herkese yeni değeri yayınlar. // Redux'taki store'a benzer.
+  protected _isLogged = new BehaviorSubject<boolean>(this.isAuthenticated);
+  public isLogged: Observable<boolean> = this._isLogged.asObservable();
+
   constructor(protected localStorageService: LocalStorageService) {}
 
   protected get token(): string | null {
@@ -28,6 +40,10 @@ export class AuthService {
 
   logout(): void {
     this.localStorageService.remove(ACCESS_TOKEN_KEY);
+    this._loggedOut.next(); // next: Yeni bir event yayınlar, varsa yeni değeri de içerebilir.
+    // error(); // error: Observable'a hata ekler.
+    // complete(); // complete: Observable'ı tamamlar, artık yeni değer yayınlamaz.
+    this._isLogged.next(false);
   }
 
   get isAuthenticated(): boolean {

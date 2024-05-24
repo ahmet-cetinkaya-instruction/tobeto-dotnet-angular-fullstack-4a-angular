@@ -33,6 +33,8 @@ export class AuthService extends CoreAuthService {
             ACCESS_TOKEN_KEY,
             loggedInformation.access_token
           );
+          this._logged.next();
+          this._isLogged.next(true);
         })
       );
   }
