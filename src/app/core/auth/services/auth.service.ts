@@ -21,7 +21,7 @@ export class AuthService {
 
   constructor(protected localStorageService: LocalStorageService) {}
 
-  protected get token(): string | null {
+  public get token(): string | null {
     return this.localStorageService.get<string>(ACCESS_TOKEN_KEY);
   }
 

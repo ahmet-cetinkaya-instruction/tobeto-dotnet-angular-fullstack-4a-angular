@@ -7,6 +7,7 @@ import { Observable, tap } from 'rxjs';
 import { AuthService as CoreAuthService } from '../../../core/auth/services/auth.service';
 import { ACCESS_TOKEN_KEY } from '../../../core/auth/constants/auth-keys';
 import { LocalStorageService } from '../../../core/browser/services/local-storage.service';
+import { SecretMessage } from '../models/secret-message';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +38,13 @@ export class AuthService extends CoreAuthService {
           this._isLogged.next(true);
         })
       );
+  }
+
+  test(): Observable<SecretMessage> {
+    return this.http.get<SecretMessage>(`${this.apiControllerUrl}/test`);
+  }
+
+  testAdmin(): Observable<SecretMessage> {
+    return this.http.get<SecretMessage>(`${this.apiControllerUrl}/test-admin`);
   }
 }
