@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BasicLayoutComponent } from './components/basic-layout/basic-layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [BasicLayoutComponent, FooterComponent], // Declarations: Template tarafında kullanmamız gereken standolone olmayan angular bileşenlerini -component'ler, directive'ler, pipe'lar- tanımladığımız yerdir.
@@ -10,7 +11,8 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     CommonModule,
     NavbarComponent,
-    // FooterComponent
+    // FooterComponent,
+    RouterModule
   ],
 
   exports: [BasicLayoutComponent, NavbarComponent, CommonModule], // Export: Bu modül içerisinde tanımlanan bileşenlerin, directive'lerin ve pipe'ların dışarıya açılmasını sağlar. Bu sayede bu modülü import eden diğer modüller bu bileşenleri kullanabilir.

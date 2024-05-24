@@ -1,5 +1,6 @@
 <!-- HTML Semantic Tags -->
-<div class="d-flex flex-column min-vh-100">
+<div class="d-flex flex-column min-vh-100 nw-container">
+  <div>BasicLayoutComponent: {{ now }}</div>
   <header>
     <app-navbar></app-navbar>
   </header>
@@ -7,6 +8,7 @@
   <main class="container flex-grow-1 py-3">
     <ng-content></ng-content>
     <!-- ng-content: bu compenti kullandığımız yerde içerine geçtiğimiz templati buraya yerleştiriyor olacak. -->
+    <router-outlet></router-outlet>
   </main>
 
   <footer>

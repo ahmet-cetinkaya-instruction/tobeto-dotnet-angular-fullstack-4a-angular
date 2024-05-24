@@ -12,4 +12,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './basic-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasicLayoutComponent {}
+export class BasicLayoutComponent {
+  now = new Date();
+}

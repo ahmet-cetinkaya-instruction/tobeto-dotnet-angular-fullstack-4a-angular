@@ -29,6 +29,8 @@ import { LocalStorageService } from '../../core/browser/services/local-storage.s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
+  now = new Date();
+
   selectedCategoryId: number | null = null;
 
   oldUser: boolean = false;

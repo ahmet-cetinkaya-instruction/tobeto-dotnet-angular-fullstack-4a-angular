@@ -19,6 +19,8 @@ import { LoginFormComponent } from '../../../features/auth/components/login-form
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
+  now = new Date();
+
   constructor(private router: Router) {}
 
   onLoginSucces() {
