@@ -13,7 +13,7 @@ export class AuthService {
     return this.localStorageService.get<string>(ACCESS_TOKEN_KEY);
   }
 
-  protected get tokenPayload(): AccessTokenPayload | null {
+  public get tokenPayload(): AccessTokenPayload | null {
     if (!this.token) return null;
 
     const token = this.token;

@@ -1,3 +1,7 @@
-<button [type]="type" class="btn btn-primary">
+<button
+  [type]="type"
+  class="btn btn-primary"
+  (click)="buttonClick.emit($event)"
+>
   <ng-content></ng-content>
 </button>
