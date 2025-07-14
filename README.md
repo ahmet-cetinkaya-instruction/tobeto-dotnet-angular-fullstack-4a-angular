@@ -1,49 +1,18 @@
-# Northwind
+# Tobeto .NET Angular Fullstack 4.A - Frontend Angular Training
 
-`angular.json`: Angular konfigurasyon dosyasıdır.
+This repository is a snapshot created for documentation and knowledge-sharing purposes, capturing the content of a technical training delivered for a specific audience. The training focused on building a dynamic, single-page application using Angular and related frontend technologies.
 
-`package.json`: NodeJS Proje bilgilerini, bağımlılıklarının ve scriptlerin tanımlandığı dosyadır.
+## Main Covered Topics
 
-`src/`: Angular projesinin kaynak kodlarının bulunduğu klasördür.
+- **Angular Fundamentals**: Core concepts including Components, Services, Modules, Data Binding (`@Input`, `@Output`), and event handling.
+- **Routing and Navigation**: Implementation of application routing, including lazy loading for feature modules and route guards for securing access.
+- **Asynchronous Programming with RxJS**: Extensive use of Observables, Subjects (`Subject`, `BehaviorSubject`), and operators for managing asynchronous data flows and state.
+- **HTTP Communication**: Interaction with a backend API using `HttpClient`, including the use of interceptors for handling authentication tokens.
+- **Authentication & Authorization**: Built a complete login and logout flow, managed user sessions with `LocalStorage`, and protected routes using `CanActivate` guards.
+- **Advanced Angular Features**: Created custom structural directives (`*ifNot`), attribute directives (`highlight`), and pipes for data transformation (e.g., VAT calculation).
+- **UI/UX with Bootstrap**: Developed a responsive UI with shared components like navigation bars, layouts, cards, and pagination.
+- **State Management**: Explored component-level state management and communication between components.
+- **Practical Application**: The training included building a sample e-commerce frontend ("Northwind") with features like product and category lists, filtering, and paginated data display.
+- **Technologies Used**: Angular 17, TypeScript, RxJS, Bootstrap, and Node.js for Server-Side Rendering (SSR).
 
-`src/assets/`: Angular projesinde kullanılan statik dosyaların (resim, font, css, js) bulunduğu klasördür.
-
-`src/app/`: Angular projesinin uygulama tarafındaki component, directive, pipe, service gibi bileşenlerinin bulunduğu klasördür.
-
-`src/app/app.component.ts`: Uygulamanın başlangıç component'idir. Diğer component bu bileşenin içerisinde kullanılır.
-
-`src/app/app.config.ts`: Uygulama genelinde kullanılacak olan konfigurasyonların tanımlandığı dosyadır.
-
-`src/app/app.routes.ts`: Uygulama genelinde kullanılacak olan rotaların tanımlandığı dosyadır.
-
-`dist/`: Angular projesinin çıktısı alınmış hali bu klasör altında bulunur. `ng build` komutu ile oluşturulur.
-
-`node_modules/`: NodeJS projesinin bağımlılıklarının bulunduğu klasördür.
-`server.ts`: Angular'ın SSR (Server Side Rendering) özelliğini kullanarak NodeJS server'ı oluşturmak için kullanılan dosyadır.
-`tsconfig.json`: TypeScript derleme ayarlarının yapıldığı dosyadır.
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+> Note: This repository is not intended for ongoing development; it is an archive of a specific training program and is provided for reference and knowledge sharing.
